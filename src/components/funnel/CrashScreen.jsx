@@ -79,12 +79,12 @@ export default function CrashScreen({ onSelect }) {
           >
             {/* Glow wrapper (new) */}
             <div
-              className="absolute -inset-3 rounded-2xl opacity-50 blur-xl transition-all duration-500 group-hover:opacity-90 group-hover:blur-2xl"
-              style={{ background: option.gradient }}
+             className="absolute -inset-3 rounded-full opacity-25 blur-xl transition-all duration-500 group-hover:opacity-50 group-hover:blur-xl"
+               style={{ background: option.gradient }}
             />
 
             <div
-              className="absolute -inset-1.5 rounded-2xl opacity-30 blur-md"
+              className="absolute -inset-1.5 rounded-full opacity-45 blur-lg"
               style={{ background: option.gradient }}
             />
 

@@ -64,13 +64,13 @@ export default function GoalScreen({ onSelect }) {
           >
             {/* Outer glow */}
             <div
-              className="absolute -inset-3 rounded-full opacity-60 blur-xl transition-all duration-500 group-hover:opacity-100 group-hover:blur-2xl"
+              className="absolute -inset-3 rounded-full opacity-25 blur-xl transition-all duration-500 group-hover:opacity-50 group-hover:blur-xl"
               style={{ background: goal.gradient }}
             />
 
             {/* Inner glow */}
             <div
-              className="absolute -inset-1.5 rounded-full opacity-40 blur-md"
+              className="absolute -inset-1.5 rounded-full opacity-45 blur-lg"
               style={{ background: goal.gradient }}
             />
 

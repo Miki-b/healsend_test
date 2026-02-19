@@ -76,14 +76,14 @@ export default function InjectionScreen({ onProceed, onExit }) {
 >
   {/* Glow layers */}
   <div
-    className="absolute -inset-3 rounded-2xl opacity-50 blur-xl transition-all duration-500 group-hover:opacity-90 group-hover:blur-2xl"
+    className="absolute -inset-3 rounded-full opacity-25 blur-xl transition-all duration-500 group-hover:opacity-50 group-hover:blur-xl"
     style={{
       background: "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 40%, #c4b5fd 100%)",
     }}
   />
   <div
-    className="absolute -inset-1.5 rounded-2xl opacity-30 blur-md"
-    style={{
+   className="absolute -inset-1.5 rounded-full opacity-45 blur-lg"
+   style={{
       background: "linear-gradient(135deg, #8b5cf6 0%, #8b5cf6 40%, #8b5cf6 100%)",
     }}
   />
