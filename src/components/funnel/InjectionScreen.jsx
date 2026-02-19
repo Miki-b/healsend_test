@@ -68,19 +68,40 @@ export default function InjectionScreen({ onProceed, onExit }) {
 
       {/* Options */}
       <div className="w-full max-w-md space-y-4">
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          onClick={onProceed}
-          className="w-full group relative"
-        >
-          <div className="absolute inset-0 bg-emerald-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative flex items-center justify-center gap-3 p-5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold text-lg shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all">
-            <Syringe className="w-5 h-5" />
-            I'm comfortable with this
-          </div>
-        </motion.button>
+      <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.5 }}
+  className="group relative w-full"
+>
+  {/* Glow layers */}
+  <div
+    className="absolute -inset-3 rounded-2xl opacity-50 blur-xl transition-all duration-500 group-hover:opacity-90 group-hover:blur-2xl"
+    style={{
+      background: "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 40%, #c4b5fd 100%)",
+    }}
+  />
+  <div
+    className="absolute -inset-1.5 rounded-2xl opacity-30 blur-md"
+    style={{
+      background: "linear-gradient(135deg, #8b5cf6 0%, #8b5cf6 40%, #8b5cf6 100%)",
+    }}
+  />
+
+  {/* Card / button */}
+  <button
+    onClick={onProceed}
+    className="relative w-full flex items-center justify-center gap-3 p-5 rounded-2xl text-white font-semibold text-lg transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+    style={{
+      background: "linear-gradient(135deg, #8b5cf6 0%, #8b5cf6 40%, #8b5cf6 100%)",
+    }}
+  >
+    <Syringe className="w-5 h-5" />
+    I'm comfortable with this
+  </button>
+</motion.div>
+
+
 
         <motion.button
           initial={{ opacity: 0, y: 20 }}
