@@ -8,23 +8,45 @@ export default function EmailCapture({ onComplete }) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
-    
+  
     setIsSubmitting(true);
-    
-    // Simulate a brief delay
+  
+    // 🔑 SEND EMAIL TO PARENT (WordPress)
+    window.parent.postMessage(
+      {
+        type: "EMAIL_CAPTURED",
+        payload: { email }
+      },
+      "*"
+      // later you should replace * with your WP domain
+    );
+  
     await new Promise(resolve => setTimeout(resolve, 500));
-    
     setShowCelebration(true);
-    
-    // Wait for celebration animation then proceed
+  
     setTimeout(() => {
       onComplete();
     }, 3000);
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!email) return;
+    
+  //   setIsSubmitting(true);
+    
+  //   // Simulate a brief delay
+  //   await new Promise(resolve => setTimeout(resolve, 500));
+    
+  //   setShowCelebration(true);
+    
+  //   // Wait for celebration animation then proceed
+  //   setTimeout(() => {
+  //     onComplete();
+  //   }, 3000);
+  // };
 
   if (showCelebration) {
     return <CelebrationAnimation email={email} />;
