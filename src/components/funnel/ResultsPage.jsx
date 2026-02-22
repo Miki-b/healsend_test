@@ -3,7 +3,19 @@ import { motion } from 'framer-motion';
 import { Zap, Sparkles, Dna, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-
+const WOO_PRODUCT_MAP = {
+  drive: {
+    base: 'nad-injections',            // $249
+    withGlutathione: 'nad-gluta',     // $249 + $129
+  },
+  radiance: {
+    base: 'radiance-protocol',        // $199
+  },
+  reset: {
+    full: 'cellular-reset',           // $399
+    nadOnly: 'nad-injections',          // downgrade
+  }
+};
 const protocols = {
   drive: {
     name: 'The Neural Drive Protocol',
@@ -57,7 +69,9 @@ const protocols = {
   }
 };
 
+
 export default function ResultsPage({ protocol }) {
+
   const [addGlutathione, setAddGlutathione] = useState(false);
   const [downgradedToNadOnly, setDowngradedToNadOnly] = useState(false);
 
@@ -96,7 +110,32 @@ export default function ResultsPage({ protocol }) {
       : currentProtocol.includes;
 
   const Icon = isNadOnly ? Zap : currentProtocol.icon;
+function getWooProductFromLogic() {
+  if (protocol === 'drive') {
+    return addGlutathione
+      ? WOO_PRODUCT_MAP.drive.withGlutathione
+      : WOO_PRODUCT_MAP.drive.base;
+  }
 
+  if (protocol === 'radiance') {
+    return WOO_PRODUCT_MAP.radiance.base;
+  }
+
+  if (protocol === 'reset') {
+    return downgradedToNadOnly
+      ? WOO_PRODUCT_MAP.reset.nadOnly
+      : WOO_PRODUCT_MAP.reset.full;
+  }
+
+  return null;
+}
+
+function handleCheckoutClick() {
+  const productSlug = getWooProductFromLogic();
+  if (!productSlug) return;
+
+  window.location.href = `/checkout-form/?product=${productSlug}`;
+}
   return (
     <div className="min-h-screen px-6 py-16">
       <div className="max-w-2xl mx-auto">
@@ -209,8 +248,10 @@ export default function ResultsPage({ protocol }) {
                 </div>
               </div>
 
-              <Button
+              <Button  
+                
                 className={`w-full py-6 text-lg font-semibold rounded-xl bg-gradient-to-r ${activeGradient} hover:opacity-90 text-white shadow-lg ${activeGlow}`}
+                onClick={handleCheckoutClick}
               >
                 Start My Protocol
               </Button>
